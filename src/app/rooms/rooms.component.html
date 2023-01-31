@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room</title>
+</head>
+
+<body>
+    <app-header></app-header>
+    <!-- <h1> Welcome to {{hotelName}}</h1> -->
+
+
+    <div [hidden]="hideRooms">
+        Rumber of rooms:
+        <div [ngStyle]="{'color':roomSummery.avaiableRooms ? 'green':'red'}" [innerText]="numberOfRooms"></div>
+    </div>
+    <button (click)="toggle()" type="button" class="btn btn-primary"> Toggle</button>
+
+
+    <br><br><br>
+
+    {{roomSummery.avaiableRooms ?? 'No rooms'}}
+
+    <div *ngIf="hideRooms">
+        <app-rooms-list [rooms]="roomList" [comeTitle]="title" (selectedRoom)="selectedRoom($event)">
+        </app-rooms-list>
+
+    </div>
+
+    <div>
+        <button (click)="addRoom()" type="button" class="btn btn-primary"> Add Room</button>
+    </div>
+
+    <div *ngIf="room">
+        {{room | json}}
+    </div>
+
+
+</body>
+
+</html>
